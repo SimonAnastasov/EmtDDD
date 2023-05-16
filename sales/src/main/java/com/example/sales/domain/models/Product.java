@@ -1,5 +1,7 @@
 package com.example.sales.domain.models;
 
+import com.example.sales.domain.valueobjects.NutritionValue;
+import com.example.sales.domain.valueobjects.ProductCategory;
 import com.example.sales.domain.valueobjects.Quantity;
 import com.example.sharedkernel.domain.base.AbstractEntity;
 import com.example.sharedkernel.domain.financial.Money;
@@ -15,4 +17,7 @@ public class Product extends AbstractEntity<ProductId> {
         @AttributeOverride(name = "currency", column = @Column(name = "price_currency"))
     })
     private Money price;
+
+    private ProductCategory category;
+    private NutritionValue nutritionValues;
 }
