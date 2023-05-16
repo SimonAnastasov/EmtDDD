@@ -3,10 +3,7 @@ package com.example.sales.domain.models;
 import com.example.sales.domain.valueobjects.Quantity;
 import com.example.sharedkernel.domain.base.AbstractEntity;
 import com.example.sharedkernel.domain.financial.Money;
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 @Entity
 public class Product extends AbstractEntity<ProductId> {
