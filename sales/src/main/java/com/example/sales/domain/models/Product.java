@@ -6,8 +6,10 @@ import com.example.sales.domain.valueobjects.Quantity;
 import com.example.sharedkernel.domain.base.AbstractEntity;
 import com.example.sharedkernel.domain.financial.Money;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 public class Product extends AbstractEntity<ProductId> {
     private String productName;
     private Quantity quantity;

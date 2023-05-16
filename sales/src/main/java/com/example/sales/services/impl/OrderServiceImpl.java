@@ -3,6 +3,7 @@ package com.example.sales.services.impl;
 import com.example.sales.domain.models.Order;
 import com.example.sales.domain.models.OrderId;
 import com.example.sales.domain.repository.OrderRepository;
+import com.example.sales.domain.valueobjects.OrderStatus;
 import com.example.sales.services.CartService;
 import com.example.sales.services.OrderService;
 import lombok.AllArgsConstructor;
@@ -19,11 +20,53 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order findById(OrderId id) {
-        return null;
+        return this.orderRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Order> getAll() {
-        return null;
+        return this.orderRepository.findAll();
+    }
+
+    @Override
+    public Order createOrder(Order order) {
+        return this.orderRepository.save(order);
+    }
+
+    @Override
+    public Order updateOrder(Order order) {
+        return this.orderRepository.save(order);
+    }
+
+    @Override
+    public boolean deleteOrder(OrderId id) {
+        return this.orderRepository.findById(id)
+                .map(order -> {
+                    this.orderRepository.delete(order);
+                    return true;
+                })
+                .orElse(false);
+    }
+
+    @Override
+    public Order payOrder(OrderId id) {
+        return this.orderRepository.findById(id)
+                .map(order -> {
+                    order.setOrderStatus(OrderStatus.PAID);
+                    this.orderRepository.save(order);
+                    return order;
+                })
+                .orElse(null);
+    }
+
+    @Override
+    public Order cancelOrder(OrderId id) {
+        return this.orderRepository.findById(id)
+                .map(order -> {
+                    order.setOrderStatus(OrderStatus.CANCELED);
+                    this.orderRepository.save(order);
+                    return order;
+                })
+                .orElse(null);
     }
 }

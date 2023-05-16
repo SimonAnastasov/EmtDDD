@@ -18,11 +18,31 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(ProductId id) {
-        return null;
+        return this.productRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Product> getAll() {
-        return null;
+        return this.productRepository.findAll();
+    }
+
+    @Override
+    public Product createProduct(Product product) {
+        return this.productRepository.save(product);
+    }
+
+    @Override
+    public Product updateProduct(Product product) {
+        return this.productRepository.save(product);
+    }
+
+    @Override
+    public boolean deleteProduct(ProductId id) {
+        return this.productRepository.findById(id)
+                .map(product -> {
+                    this.productRepository.delete(product);
+                    return true;
+                })
+                .orElse(false);
     }
 }
