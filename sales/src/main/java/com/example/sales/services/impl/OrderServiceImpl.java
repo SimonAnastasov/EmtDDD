@@ -2,6 +2,7 @@ package com.example.sales.services.impl;
 
 import com.example.sales.domain.models.Order;
 import com.example.sales.domain.models.OrderId;
+import com.example.sales.domain.repository.OrderRepository;
 import com.example.sales.services.CartService;
 import com.example.sales.services.OrderService;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 @Transactional
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
-    private final CartService cartService;
+    private final OrderRepository orderRepository;
 
     @Override
     public Order findById(OrderId id) {

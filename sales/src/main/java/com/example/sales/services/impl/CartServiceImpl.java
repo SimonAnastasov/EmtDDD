@@ -2,6 +2,7 @@ package com.example.sales.services.impl;
 
 import com.example.sales.domain.models.Cart;
 import com.example.sales.domain.models.CartId;
+import com.example.sales.domain.repository.CartRepository;
 import com.example.sales.services.CartService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.List;
 @Transactional
 @AllArgsConstructor
 public class CartServiceImpl implements CartService {
-    private final CartService cartService;
+    private final CartRepository cartRepository;
 
     @Override
     public Cart findById(CartId id) {
